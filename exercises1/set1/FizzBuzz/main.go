@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-
+//use modulo to check for a number being a multiple or not
 	for i := 1; i <= 100; i++ {
 		if i%3 == 0 && i%5 == 0 {
 			fmt.Println("FizzBuzz")

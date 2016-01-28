@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-
+//
 func main() {
 	var largeNum,smallNum int
 	fmt.Println("Please enter a small number followed by a large number.")
