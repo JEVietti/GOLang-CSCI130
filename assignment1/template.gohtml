@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>{{.Title}}</title>
+</head>
+<body>
+<h2> What planet is the closest Earth? </h2>
+{{if .Type}}
+    <style>h3{color:red }</style>
+    <h3>It's {{.Name}} did you know {{.Name}} is known as the {{.Color}} {{.Member}}.</h3>
+{{else}}
+    <h3>What planet are you?</h3>
+{{end}}
+</body>
+</html>
