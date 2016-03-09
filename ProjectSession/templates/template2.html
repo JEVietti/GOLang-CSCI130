@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mars</title>
+    <title>User</title>
 </head>
 <body>
-<h1>
-    Mars is pretty neat!
-</h1>
-
+<h2>
+    {{if  .Name}}
+        Hello, {{.Name}}
+    {{else}}
+        Who's {{.Name}}, Looke at Cookie
+    </h2>
+{{end}}
 </body>
 </html>

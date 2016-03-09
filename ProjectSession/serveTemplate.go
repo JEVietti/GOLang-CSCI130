@@ -1,42 +1,43 @@
+//Project 1 Part 1 Uploaded 3/8-3/9
 package main
 
-import(
+import (
 	"html/template"
-	"net/http"
 	"io/ioutil"
+	"net/http"
 )
 
-type planet struct{
-	Title string
-	Name string
+type planet struct {
+	Title  string
+	Name   string
 	Number int
-	Color string
+	Color  string
 	Member string
-	Type bool
+	Type   bool
 }
+
 var file1 string
 
-func servePlanet(res http.ResponseWriter, req *http.Request){
+func servePlanet(res http.ResponseWriter, req *http.Request) {
 	planetX := planet{
-		Title: "Member of The Solar System",
-		Name:"Mars ",
+		Title:  "Member of The Solar System",
+		Name:   "Mars ",
 		Number: 4,
-		Color: "Red",
+		Color:  "Red",
 		Member: "Planet",
-		Type: true,
-
+		Type:   true,
 	}
-	tpl,_ :=template.New("Name").Parse(file1)
+	tpl, _ := template.New("Name").Parse(file1)
 	tpl.Execute(res, planetX)
 }
 
-func init(){
-	temp,_ := ioutil.ReadFile("templates/template.html")
+func init() {
+	temp, _ := ioutil.ReadFile("templates/template.html")
 	file1 = string(temp)
 }
 
-func main (){
-	http.HandleFunc("/",servePlanet)
-	http.ListenAndServe(":8080",nil)
+func main() {
+	http.HandleFunc("/", servePlanet)
+	http.ListenAndServe(":8080", nil)
 
 }
