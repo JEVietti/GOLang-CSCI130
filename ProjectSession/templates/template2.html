@@ -5,12 +5,10 @@
     <title>User</title>
 </head>
 <body>
-<h2>
-    {{if  .Name}}
-        Hello, {{.Name}}
-    {{else}}
-        Who's {{.Name}}, Looke at Cookie
-    </h2>
-{{end}}
+<form method="POST" action="/">
+    <p> Name:<input type="text" name="name" /> </p>
+    <p> Age:<input type="text" name="age" /> </p>
+    <p> <input type="submit" value="Submit" /> </p>
+    </form>
 </body>
 </html>
