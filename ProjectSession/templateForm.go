@@ -1,3 +1,5 @@
+//Joseph Vietti Project Part 3 serve template form
+//https://github.com/JEVietti/GOLang-CSCI130/blob/master/ProjectSession/templateForm.go
 package main
 
 import (
@@ -7,14 +9,13 @@ import (
 	"net/http"
 )
 
-//Serves index.html
 func serveForm(res http.ResponseWriter, req *http.Request) {
 	tpl, err := template.ParseFiles("templates/template2.html")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	//create a cookie "session-fino"
+	//create a cookie session-fino
 	cookie, err := req.Cookie("session-fino")
 	if err != nil {
 		id, _ := uuid.NewV4()
@@ -25,7 +26,7 @@ func serveForm(res http.ResponseWriter, req *http.Request) {
 			HttpOnly: true,
 		}
 	}
-
+	//Add the cookie values
 	cookie.Value = cookie.Value +
 		`Name=` + req.FormValue("name") +
 		`Age=` + req.FormValue("age")

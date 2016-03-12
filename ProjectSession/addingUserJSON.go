@@ -1,3 +1,5 @@
+//Joseph Vietti Project Part 4
+//https://github.com/JEVietti/GOLang-CSCI130/blob/master/ProjectSession/addingUserJSON.go
 package main
 
 import (
@@ -7,7 +9,7 @@ import (
 	"html/template"
 	"net/http"
 )
-
+//define the structure for user
 type User struct {
 	Name string
 	Age  string
@@ -19,9 +21,8 @@ func serveUser(res http.ResponseWriter, req *http.Request) {
 	temp, _ := template.ParseFiles("templates/template2.html")
 	temp.Execute(res, nil)
 }
-
+//create the cookie
 func createCookie(res *http.ResponseWriter, cookieName, cookieValue string) {
-
 	cookie := &http.Cookie{
 		Name:  cookieName,
 		Value: cookieValue,
@@ -31,7 +32,7 @@ func createCookie(res *http.ResponseWriter, cookieName, cookieValue string) {
 
 	http.SetCookie(*res, cookie)
 }
-
+//"bake" it = get form values and encode
 func bakeCookie(res http.ResponseWriter, req *http.Request) {
 	id, _ := uuid.NewV4()
 	createCookie(&res, "session-fino", id.String())
