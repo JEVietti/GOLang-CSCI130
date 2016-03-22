@@ -1,4 +1,4 @@
-//Joseph Vietti CSCI 130 HMAC in cookie
+//Joseph Vietti CSCI 130 Illustrate the cookie
 package main
 
 import (
@@ -17,9 +17,11 @@ type User struct {
 }
 
 var loginFile string
-
+var viewFile string
 func init() {
 	temp, _ := ioutil.ReadFile("user_templates/template2.html")
+	temp1, _ := ioutil.ReadFile("user_templates/template.html")
+	viewFile = string(temp1)
 	loginFile = string(temp)
 }
 
@@ -74,9 +76,11 @@ func serveLogin(res http.ResponseWriter, req *http.Request) {
 		cookie.Value = bakeUserCookie(cookie, req)
 	}
 	obj, _ := undoJSON(cookie)
-
-	t, _ := template.New("Name").Parse(loginFile)
-	t.Execute(res, obj)
+	vobj, _ := undoJSON(cookie)
+		t, _ := template.New("Name").Parse(loginFile)
+		v, _ := template.New("Name").Parse(viewFile)
+		t.Execute(res, obj)
+		v.Execute(res, vobj)
 }
 
 func main() {
