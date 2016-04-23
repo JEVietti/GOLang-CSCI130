@@ -16,6 +16,7 @@ import (
 )
 
 var tpl *template.Template
+var users = [3]string{"user1", "user2", "user3"}
 
 const gcsBucket = "deal-breaker.appspot.com"
 
@@ -45,6 +46,24 @@ func viewPage(res http.ResponseWriter, req *http.Request) {
 	if len(photos) == 0 {
 		photos = gcs.uploadPhotos()
 	}
+	//part 3 addition to create 3 users with diferrent image links emulating a file structure inthe google cloud storage 
+	user_images := make(map[string][]string)
+	for _, user := range users {
+		query:= &storage.Query{
+			Prefix: user+ "/",
+		}
+		objs ,err := gcs.bucket.List(gcs.ctx,query)
+		if err != nil{
+			log.Errorf(gcs.ctx, "Error querying user list")
+			return
+		}
+		var links []string
+		for _,objs := range objs.Results{
+			links = append(links, objs.MediaLink)
+		}
+		user_images[users] = links
+	}
+
 	tpl.Execute(res, photos)
 }
 
@@ -76,10 +95,10 @@ func configureCloud(res http.ResponseWriter, req *http.Request) (gcs *gcsPhotos)
 
 func (gcs *gcsPhotos) retrievePhotos() (photos []string) {
 	//update to limit the Number of entries to 6
-	query := &storage.Query{
+	queryLimit := &storage.Query{
 		MaxResults: 6,
 	}
-	files, err := gcs.bucket.List(gcs.ctx, query)
+	files, err := gcs.bucket.List(gcs.ctx, queryLimit)
 	if err != nil {
 		log.Errorf(gcs.ctx, "listBucketDirMode: unable to get the buckets %q: %v", gcsBucket, err)
 		return
