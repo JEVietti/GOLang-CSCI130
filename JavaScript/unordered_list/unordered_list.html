@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id = "container"></div>
+        <script type = "text/javascript">
+            var elementHolder = document.querySelector("#container");
+            var list = ["Feels","Bad","Man"," Kappa"];
+                var elementList = document.createElement("Hello");
+                for(var i =0; i<list.length; i++){
+                    var elementListInner = document.createElement("list");
+                    elementListInner.innerText = list[i];
+                    elementList.appendChild(elementListInner);
+                }
+
+            elementHolder.appendChild(elementList);
+        </script>
+</body>
+</html>
