@@ -75,7 +75,11 @@ func configureCloud(res http.ResponseWriter, req *http.Request) (gcs *gcsPhotos)
 }
 
 func (gcs *gcsPhotos) retrievePhotos() (photos []string) {
-	files, err := gcs.bucket.List(gcs.ctx, nil)
+	//update to limit the Number of entries to 6
+	query := &storage.Query{
+		MaxResults: 6,
+	}
+	files, err := gcs.bucket.List(gcs.ctx, query)
 	if err != nil {
 		log.Errorf(gcs.ctx, "listBucketDirMode: unable to get the buckets %q: %v", gcsBucket, err)
 		return
