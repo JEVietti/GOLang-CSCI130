@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id = 'tDiv'></div>
+<script type = "text/javascript">
+    var elementHolder = document.querySelector('#tDiv');
+    var list = ["Feels","Bad","Man"," Kappa"];
+    var elementList = document.createElement("ul");
+    for(var i =0; i<list.length; i++){
+        var elementListInner = document.createElement("li");
+        elementListInner.innerText = list[i];
+        elementList.appendChild(elementListInner);
+    }
+
+    elementHolder.appendChild(elementList);
+    for(var i =0; i<list.length;i++){
+        document.getElementById(i).addEventListener("POP",function(){
+            alert(this.innerHTML);
+        })
+    }
+
+</script>
+</body>
+</html>
