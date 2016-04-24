@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id = "container" style = "position:relative">
+        <div id = "images" style="position:absolute; z-index: auto" ></div>
+        <br><p>Hello, World!</p>
+    </div>
+
+    <script type = "text/javascript">
+        var images = ["images/8.jpg","images/13.jpg","images/15.jpg"];
+        var memes = ["Kappa", "FeelsBadMan", "FeelsGoodMan"];
+        var index = 0;
+        window.setInterval(function(){
+            index = (index + 1) % 3;
+            var value = images[index]
+            document.body.style.backgroundImage = "url('"+value+"')";
+            document.getElementById("images").innerHTML = memes[index];
+        }, 4000);
+        alert("Hello!");
+    </script>
+</body>
+</html>
